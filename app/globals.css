@@ -10,6 +10,17 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Design widths: Mobile 375px, Tablet 1024px, Desktop 1440px */
+  /* Media query triggers: Mobile <500px, Tablet 500-1024px, Desktop 1025-1440px, Fullwidth >1440px */
+  --breakpoint-mobile: 500px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-desktop: 1440px;
+
+  /* Design widths for vw scaling calculations */
+  --design-width-mobile: 375px;
+  --design-width-tablet: 1024px;
+  --design-width-desktop: 1440px;
 }
 
 @media (prefers-color-scheme: dark) {
