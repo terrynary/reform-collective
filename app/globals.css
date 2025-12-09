@@ -1,15 +1,45 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Neutrals */
+  --color-black-200: #1f2b33;
+  --color-black-100: #1f3c3c;
+  --color-off-white: #f8f8f8;
+  --color-white: #ffffff;
+
+  /* Primary Greens */
+  --color-green-500: #1c6b3a;
+  --color-green-400: #3d7150;
+  --color-green-300: #6e9e6b;
+  --color-green-200: #9cc684;
+  --color-green-100: #d3dcd7;
+
+  /* Legacy variables for compatibility */
+  --background: var(--color-white);
+  --foreground: var(--color-black-200);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Color System */
+  --color-background: var(--color-white);
+  --color-foreground: var(--color-black-200);
+
+  /* Neutrals  */
+  --color-black-200: #1f2b33;
+  --color-black-100: #1f3c3c;
+  --color-off-white: #f8f8f8;
+  --color-white: #ffffff;
+
+  /* Primary Greens */
+  --color-green-500: #1c6b3a;
+  --color-green-400: #3d7150;
+  --color-green-300: #6e9e6b;
+  --color-green-200: #9cc684;
+  --color-green-100: #d3dcd7;
+
+  /* Typography */
+  --font-sans: var(--font-sohne);
+  --font-family-sohne: var(--font-sohne), Arial, Helvetica, sans-serif;
 
   /* Design widths: Mobile 375px, Tablet 1024px, Desktop 1440px */
   /* Media query triggers: Mobile <500px, Tablet 500-1024px, Desktop 1025-1440px, Fullwidth >1440px */
@@ -25,13 +55,86 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-black-200);
+    --foreground: var(--color-off-white);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family-sohne);
+}
+
+.heading-01 {
+  font-family: var(--font-family-sohne);
+  font-weight: 400;
+  font-size: 72pt;
+  letter-spacing: 3%;
+  line-height: 100%;
+}
+
+.heading-05 {
+  font-family: var(--font-family-sohne);
+  font-weight: 400;
+  font-size: 48pt;
+  letter-spacing: 3%;
+  line-height: 100%;
+}
+
+.title-text {
+  font-family: var(--font-family-sohne);
+  font-weight: 400;
+  font-size: 12pt;
+  letter-spacing: 10%;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.body-xl {
+  font-family: var(--font-family-sohne);
+  font-weight: 400;
+  font-size: 28pt;
+  letter-spacing: 10%;
+  line-height: 140%;
+}
+
+.body-l {
+  font-family: var(--font-family-sohne);
+  font-weight: 400;
+  font-size: 24pt;
+  letter-spacing: -3%;
+  line-height: 140%;
+}
+
+.body-reg {
+  font-family: var(--font-family-sohne);
+  font-weight: 400;
+  font-size: 20pt;
+  letter-spacing: -3%;
+  line-height: 140%;
+}
+
+.body-s {
+  font-family: var(--font-family-sohne);
+  font-weight: 400;
+  font-size: 16pt;
+  letter-spacing: -3%;
+  line-height: 140%;
+}
+
+.body-xs {
+  font-family: var(--font-family-sohne);
+  font-weight: 400;
+  font-size: 14pt;
+  letter-spacing: -3%;
+  line-height: 140%;
+}
+
+.body-xxs {
+  font-family: var(--font-family-sohne);
+  font-weight: 400;
+  font-size: 12pt;
+  letter-spacing: -3%;
+  line-height: 140%;
 }
