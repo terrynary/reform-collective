@@ -49,9 +49,9 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Content Section - Desktop: Side by side, Tablet/Mobile: Stacked */}
+          {/* Content Section */}
           <div className="flex flex-col lg:flex-row lg:gap-12 w-full">
-            {/* Left Column: Body Text & CTA */}
+            {/* Left Column */}
             <div className="flex flex-col flex-1 mb-8 lg:mb-0">
               <p className="body-reg text-green-500 mb-8">
                 Join hundreds of businesses who trust us to offer health
@@ -65,7 +65,7 @@ export function Hero() {
               </button>
             </div>
 
-            {/* Right Column: Insurance Cards - Desktop only (1025px+) */}
+            {/* Right Column */}
             <div className="hidden lg:flex flex-col gap-4 w-full lg:w-auto lg:min-w-[320px] lg:max-w-[400px]">
               <Image
                 src="/images/insurance-cards/insuranceCard1.png"
@@ -98,7 +98,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Content Cards - Tablet & Mobile: Below CTA (below 1025px) */}
+          {/* Content Cards */}
           <div className="flex lg:hidden flex-col gap-4 mt-8">
             {/* Card 1 */}
             <div className="bg-off-white p-4 rounded">
@@ -145,7 +145,6 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Scroll Indicator */}
             <div className="w-full h-1 bg-gray-200 rounded-full mt-2">
               <div className="w-1/3 h-full bg-black-200 rounded-full"></div>
             </div>
