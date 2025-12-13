@@ -2,17 +2,17 @@
 
 :root {
   /* Neutrals */
-  --color-black-200: #1f2b33;
-  --color-black-100: #1f3c3c;
-  --color-off-white: #f8f8f8;
-  --color-white: #ffffff;
+  --color-black-200: #081E13;
+  --color-black-100: #112C2E;
+  --color-off-white: #FBFAF6;
+  --color-white: #FFFFFF;
 
   /* Primary Greens */
-  --color-green-500: #1c6b3a;
-  --color-green-400: #3d7150;
-  --color-green-300: #6e9e6b;
-  --color-green-200: #9cc684;
-  --color-green-100: #d3dcd7;
+  --color-green-500: #153E2A;
+  --color-green-400: #30715D;
+  --color-green-300: #6E9E8F;
+  --color-green-200: #00B684;
+  --color-green-100: #CCDDC7;
 
   /* Legacy variables for compatibility */
   --background: var(--color-white);
@@ -25,17 +25,17 @@
   --color-foreground: var(--color-black-200);
 
   /* Neutrals  */
-  --color-black-200: #1f2b33;
-  --color-black-100: #1f3c3c;
-  --color-off-white: #f8f8f8;
-  --color-white: #ffffff;
+  --color-black-200: #081E13;
+  --color-black-100: #112C2E;
+  --color-off-white: #FBFAF6;
+  --color-white: #FFFFFF;
 
   /* Primary Greens */
-  --color-green-500: #1c6b3a;
-  --color-green-400: #3d7150;
-  --color-green-300: #6e9e6b;
-  --color-green-200: #9cc684;
-  --color-green-100: #d3dcd7;
+  --color-green-500: #153E2A;
+  --color-green-400: #30715D;
+  --color-green-300: #6E9E8F;
+  --color-green-200: #00B684;
+  --color-green-100: #CCDDC7;
 
   /* Typography */
   --font-sans: var(--font-sohne);
