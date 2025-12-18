@@ -17,6 +17,7 @@ const sohne = localFont({
   ],
   variable: "--font-sohne",
   fallback: ["Arial", "Helvetica", "sans-serif"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -30,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${sohne.variable} antialiased`}>{children}</body>
+    <html lang="en" className={sohne.variable}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
