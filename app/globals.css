@@ -2,17 +2,17 @@
 
 :root {
   /* Neutrals */
-  --color-black-200: #081E13;
-  --color-black-100: #112C2E;
-  --color-off-white: #FBFAF6;
-  --color-white: #FFFFFF;
+  --color-black-200: #081e13;
+  --color-black-100: #112c2e;
+  --color-off-white: #fbfaf6;
+  --color-white: #ffffff;
 
   /* Primary Greens */
-  --color-green-500: #153E2A;
-  --color-green-400: #30715D;
-  --color-green-300: #6E9E8F;
-  --color-green-200: #00B684;
-  --color-green-100: #CCDDC7;
+  --color-green-500: #153e2a;
+  --color-green-400: #30715d;
+  --color-green-300: #6e9e8f;
+  --color-green-200: #00b684;
+  --color-green-100: #ccddc7;
 
   /* Legacy variables for compatibility */
   --background: var(--color-white);
@@ -25,21 +25,21 @@
   --color-foreground: var(--color-black-200);
 
   /* Neutrals  */
-  --color-black-200: #081E13;
-  --color-black-100: #112C2E;
-  --color-off-white: #FBFAF6;
-  --color-white: #FFFFFF;
+  --color-black-200: #081e13;
+  --color-black-100: #112c2e;
+  --color-off-white: #fbfaf6;
+  --color-white: #ffffff;
 
   /* Primary Greens */
-  --color-green-500: #153E2A;
-  --color-green-400: #30715D;
-  --color-green-300: #6E9E8F;
-  --color-green-200: #00B684;
-  --color-green-100: #CCDDC7;
+  --color-green-500: #153e2a;
+  --color-green-400: #30715d;
+  --color-green-300: #6e9e8f;
+  --color-green-200: #00b684;
+  --color-green-100: #ccddc7;
 
   /* Typography */
   --font-sans: var(--font-sohne);
-  --font-family-sohne: var(--font-sohne), Arial, Helvetica, sans-serif;
+  --font-family-sohne: var(--font-sohne);
 
   /* Design widths: Mobile 375px, Tablet 1024px, Desktop 1440px */
   /* Media query triggers: Mobile <500px, Tablet 500-1024px, Desktop 1025-1440px, Fullwidth >1440px */
@@ -60,18 +60,133 @@
   }
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-family-sohne);
+  overflow-x: hidden;
 }
 
 .heading-01 {
-  font-family: var(--font-family-sohne);
+  font-family: var(--font-sohne) !important;
   font-weight: 400;
-  font-size: 72pt;
-  letter-spacing: 3%;
-  line-height: 100%;
+  font-size: 112px;
+  letter-spacing: -3.36px;
+  line-height: 120%;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.heading-01-wrapper {
+  display: block;
+  max-width: 100%;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.heading-01-line-1-2,
+.heading-01-line-1,
+.heading-01-line-2,
+.heading-01-line-3 {
+  display: inline;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Tablet: 500px - 1024px - Three lines */
+@media (min-width: 500px) and (max-width: 1024px) {
+  .heading-01-wrapper {
+    display: block;
+  }
+
+  .heading-01-line-1-2 {
+    display: block;
+  }
+
+  .heading-01-line-1 {
+    display: block;
+  }
+
+  .heading-01-line-2 {
+    display: block;
+  }
+
+  .heading-01-line-3 {
+    display: block;
+    margin-top: -40px;
+  }
+}
+
+/* Desktop: 1025px+ - Two lines */
+@media (min-width: 1025px) {
+  .heading-01-wrapper {
+    display: block;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .heading-01-line-1-2 {
+    display: block;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .heading-01-line-1,
+  .heading-01-line-2 {
+    display: inline;
+  }
+
+  .heading-01-line-3 {
+    display: block;
+    white-space: nowrap;
+    max-width: 100%;
+    margin-top: -40px;
+  }
+}
+
+.fullwidth-container {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Mobile: 0px - 499px */
+@media (max-width: 499px) {
+  .fullwidth-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Tablet: 500px - 1024px */
+@media (min-width: 500px) and (max-width: 1024px) {
+  .fullwidth-container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* Desktop: 1025px - 1440px */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .fullwidth-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Fullwidth: 1441px+ */
+@media (min-width: 1441px) {
+  .fullwidth-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
 }
 
 .heading-05 {
