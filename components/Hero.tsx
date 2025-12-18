@@ -1,9 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { FullwidthContainer } from "./FullwidthContainer";
+
+const HERO_CARDS = [
+  {
+    src: "/images/insurance-cards/insuranceCard1.png",
+    alt: "Insurance card 1",
+  },
+  {
+    src: "/images/insurance-cards/insuranceCard2.png",
+    alt: "Insurance card 2",
+  },
+  {
+    src: "/images/insurance-cards/insuranceCard3.png",
+    alt: "Insurance card 3",
+  },
+  {
+    src: "/images/insurance-cards/insuranceCard4.png",
+    alt: "Insurance card 4",
+  },
+];
 
 export function Hero() {
   const scrollingWordsRef = useRef<HTMLDivElement>(null);
@@ -12,6 +31,7 @@ export function Hero() {
   const getInRef = useRef<HTMLSpanElement>(null);
   const theWayRef = useRef<HTMLSpanElement>(null);
   const doesntRef = useRef<HTMLSpanElement>(null);
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   useEffect(() => {
     if (!scrollingWordsRef.current) return;
@@ -73,6 +93,17 @@ export function Hero() {
         (container as any).__animation.kill();
       }
     };
+  }, []);
+
+  // Auto-rotate hero cards on desktop
+  useEffect(() => {
+    if (HERO_CARDS.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentCardIndex((prev) => (prev + 1) % HERO_CARDS.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
   }, []);
 
   // Collapse box animation after 1 second
@@ -271,103 +302,50 @@ export function Hero() {
           </div>
 
           {/* Content Section */}
-          <div className="flex flex-col lg:flex-row lg:gap-12 w-full">
-            {/* Left Column */}
-            <div className="flex flex-col flex-1 mb-8 lg:mb-0">
-              <p className="body-reg text-green-500 mb-8">
-                Join hundreds of businesses who trust us to offer health
-                insurance that works the way it should: affordable coverage that
-                puts employees and their doctors in the driving seat.
-              </p>
+          <div className="w-full max-w-[1376px] mx-auto border border-green-100 bg-white relative">
+            <div
+              className="hidden lg:block absolute inset-y-0 left-[689px] w-px bg-green-100 pointer-events-none"
+              aria-hidden="true"
+            />
 
-              <button className="flex items-center gap-2 body-s text-white bg-green-500 px-6 py-3 w-fit rounded hover:bg-green-400 transition-colors">
-                Get a Custom Quote Today
-                <span>→</span>
-              </button>
-            </div>
+            <div className="flex flex-col lg:flex-row lg:h-[328px]">
+              {/* Left Column*/}
+              <div className="w-full lg:w-[689px] px-6 py-6 flex flex-col justify-between">
+                <p className="body-reg text-green-500 mb-8">
+                  Join hundreds of businesses who trust us to offer health
+                  insurance that works the way it should: affordable coverage
+                  that puts employees and their doctors in the driving seat.
+                </p>
 
-            {/* Right Column */}
-            <div className="hidden lg:flex flex-col gap-4 w-full lg:w-auto lg:min-w-[320px] lg:max-w-[400px]">
-              <Image
-                src="/images/insurance-cards/insuranceCard1.png"
-                alt="Insurance card 1"
-                width={400}
-                height={250}
-                className="w-full h-auto rounded"
-              />
-              <Image
-                src="/images/insurance-cards/insuranceCard2.png"
-                alt="Insurance card 2"
-                width={400}
-                height={250}
-                className="w-full h-auto rounded"
-              />
-              <Image
-                src="/images/insurance-cards/insuranceCard3.png"
-                alt="Insurance card 3"
-                width={400}
-                height={250}
-                className="w-full h-auto rounded"
-              />
-              <Image
-                src="/images/insurance-cards/insuranceCard4.png"
-                alt="Insurance card 4"
-                width={400}
-                height={250}
-                className="w-full h-auto rounded"
-              />
-            </div>
-          </div>
+                <button className="flex items-center gap-2 body-s text-white bg-green-500 px-6 py-3 w-fit rounded-full hover:bg-green-400 transition-colors">
+                  Get a Custom Quote Today
+                  <span>→</span>
+                </button>
+              </div>
 
-          {/* Content Cards */}
-          <div className="flex lg:hidden flex-col gap-4 mt-8">
-            {/* Card 1 */}
-            <div className="bg-off-white p-4 rounded">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"></div>
-                <div className="flex-1 min-w-0">
-                  <div className="title-text text-black-200 mb-2">
-                    Spaw Retreat Dog Grooming
-                  </div>
-                  <div className="w-6 h-6 bg-gray-300 rounded flex items-center justify-center">
-                    <span className="text-xs">▶</span>
+              {/* Right Column*/}
+              <div className="w-full flex lg:w-[687px] px-6 py-6 items-center justify-center">
+                <div className="w-full h-full overflow-hidden">
+                  <div
+                    className="flex transition-transform duration-700 ease-in-out"
+                    style={{
+                      transform: `translateX(-${currentCardIndex * 100}%)`,
+                    }}
+                  >
+                    {HERO_CARDS.map((card) => (
+                      <div key={card.src} className="w-full flex-shrink-0">
+                        <Image
+                          src={card.src}
+                          alt={card.alt}
+                          width={400}
+                          height={250}
+                          className="w-full h-auto rounded"
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-off-white p-4 rounded">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"></div>
-                <div className="flex-1 min-w-0">
-                  <div className="title-text text-black-200 mb-2">
-                    Sunnyside Up Day Care
-                  </div>
-                  <div className="w-6 h-6 bg-gray-300 rounded flex items-center justify-center">
-                    <span className="text-xs">▶</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-off-white p-4 rounded">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"></div>
-                <div className="flex-1 min-w-0">
-                  <div className="title-text text-black-200 mb-2">
-                    Rott and Sons Accounting
-                  </div>
-                  <div className="w-6 h-6 bg-gray-300 rounded flex items-center justify-center">
-                    <span className="text-xs">▶</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="w-full h-1 bg-gray-200 rounded-full mt-2">
-              <div className="w-1/3 h-full bg-black-200 rounded-full"></div>
             </div>
           </div>
         </div>
