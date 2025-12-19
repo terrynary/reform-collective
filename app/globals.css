@@ -225,7 +225,7 @@ body {
 .body-reg {
   font-family: var(--font-family-sohne);
   font-weight: 400;
-  font-size: 20pt;
+  font-size: 23px;
   letter-spacing: -3%;
   line-height: 140%;
 }
@@ -252,4 +252,52 @@ body {
   font-size: 12pt;
   letter-spacing: -3%;
   line-height: 140%;
+}
+
+.arrow-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fbfaf6;
+  border: 1.5px solid var(--color-green-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.arrow-circle:hover {
+  border-color: var(--color-green-200);
+}
+
+.arrow-circle::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid var(--color-green-400);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  margin-left: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.arrow-circle::before {
+  content: "";
+  width: 10px;
+  height: 1.5px;
+  background-color: var(--color-green-400);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: background-color 0.3s ease;
+}
+
+.arrow-circle:hover::after {
+  border-left-color: var(--color-green-200);
+}
+
+.arrow-circle:hover::before {
+  background-color: var(--color-green-200);
 }

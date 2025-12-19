@@ -311,15 +311,80 @@ export function Hero() {
             <div className="flex flex-col lg:flex-row lg:h-[328px]">
               {/* Left Column*/}
               <div className="w-full lg:w-[689px] px-6 py-6 flex flex-col justify-between">
-                <p className="body-reg text-green-500 mb-8">
+                <p className="body-reg text-green-500 mb-8 lg:w-[500px] lg:h-[119px]">
                   Join hundreds of businesses who trust us to offer health
                   insurance that works the way it should: affordable coverage
                   that puts employees and their doctors in the driving seat.
                 </p>
 
-                <button className="flex items-center gap-2 body-s text-white bg-green-500 px-6 py-3 w-fit rounded-full hover:bg-green-400 transition-colors">
-                  Get a Custom Quote Today
-                  <span>→</span>
+                <button className="relative flex items-center gap-3 group cursor-pointer bg-transparent border-0 p-0 min-w-[calc(52px+12px+240px+12px+52px)]">
+                  <svg
+                    width="42"
+                    height="42"
+                    viewBox="0 0 52 52"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="absolute left-0 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                  >
+                    <rect
+                      width="42"
+                      height="42"
+                      x="1"
+                      y="1"
+                      fill="#fbfaf6"
+                      rx="25"
+                    />
+                    <path
+                      stroke="#00b684"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="0.6"
+                      d="M11.4227 5.6875C15.5263 2.73737 20.5603 1 26 1C39.8071 1 51 12.1929 51 26C51 39.8071 39.8071 51 26 51C12.1929 51 1 39.8071 1 26C1 23.8419 1.27346 21.7476 1.78761 19.75"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                    <path
+                      d="M32 26L28 22M32 26L28 30M32 26H20"
+                      stroke="#00b684"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <span className="body-s text-green-400 bg-white border-2 border-green-400 px-6 py-3 rounded-full group-hover:border-green-200 group-hover:text-green-200 group-hover:translate-x-[64px] transition-all duration-300 whitespace-nowrap w-[224pt] h-[32pt] flex items-center justify-center">
+                    Get a Custom Quote Today
+                  </span>
+                  <svg
+                    width="42"
+                    height="42"
+                    viewBox="0 0 52 52"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="opacity-100 group-hover:opacity-0 transition-all duration-300"
+                  >
+                    <rect
+                      width="42"
+                      height="42"
+                      x="1"
+                      y="1"
+                      fill="#fbfaf6"
+                      rx="25"
+                    />
+                    <path
+                      stroke="#30715d"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="0.6"
+                      d="M11.4227 5.6875C15.5263 2.73737 20.5603 1 26 1C39.8071 1 51 12.1929 51 26C51 39.8071 39.8071 51 26 51C12.1929 51 1 39.8071 1 26C1 23.8419 1.27346 21.7476 1.78761 19.75"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                    <path
+                      d="M32 26L28 22M32 26L28 30M32 26H20"
+                      stroke="#30715d"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </button>
               </div>
 
