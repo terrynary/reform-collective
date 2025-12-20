@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { FullwidthContainer } from "./FullwidthContainer";
 
@@ -31,7 +31,15 @@ export function Hero() {
   const getInRef = useRef<HTMLSpanElement>(null);
   const theWayRef = useRef<HTMLSpanElement>(null);
   const doesntRef = useRef<HTMLSpanElement>(null);
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [currentCardIndex, setCurrentCardIndex] = useState(HERO_CARDS.length); // Start at duplicate first card
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const currentCardIndexRef = useRef(HERO_CARDS.length);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const duplicatedCards = useMemo(
+    () => [...HERO_CARDS, ...HERO_CARDS, ...HERO_CARDS],
+    []
+  );
 
   useEffect(() => {
     if (!scrollingWordsRef.current) return;
@@ -95,15 +103,81 @@ export function Hero() {
     };
   }, []);
 
+  useEffect(() => {
+    currentCardIndexRef.current = currentCardIndex;
+    requestAnimationFrame(() => {
+      duplicatedCards.forEach((_, index) => {
+        const card = cardRefs.current[index];
+        if (!card) return;
+
+        const isCenter = index === currentCardIndex;
+        gsap.to(card, {
+          scale: isCenter ? 1.2 : 0.8,
+          duration: 0.5,
+          ease: "power2.inOut",
+        });
+      });
+    });
+  }, [currentCardIndex, duplicatedCards]);
+
   // Auto-rotate hero cards on desktop
   useEffect(() => {
     if (HERO_CARDS.length <= 1) return;
 
-    const interval = setInterval(() => {
-      setCurrentCardIndex((prev) => (prev + 1) % HERO_CARDS.length);
-    }, 3500);
+    let timeoutId: NodeJS.Timeout;
+    let intervalId: NodeJS.Timeout;
+    let isMounted = true;
 
-    return () => clearInterval(interval);
+    const rotateToNext = () => {
+      if (!isMounted) return;
+
+      const currentIdx = currentCardIndexRef.current;
+
+      const currentCard = cardRefs.current[currentIdx];
+      if (currentCard) {
+        gsap.to(currentCard, {
+          scale: 0.8,
+          duration: 0.5,
+          ease: "power2.inOut",
+        });
+      }
+
+      setTimeout(() => {
+        if (!isMounted) return;
+        const nextIndex = currentIdx + 1;
+        const container = containerRef.current;
+
+        if (nextIndex >= HERO_CARDS.length * 2) {
+          setCurrentCardIndex(nextIndex);
+
+          setTimeout(() => {
+            if (!isMounted || !container) return;
+            container.style.transition = "none";
+            setCurrentCardIndex(HERO_CARDS.length);
+            void container.offsetHeight;
+            container.style.transition = "";
+          }, 250);
+        } else {
+          setCurrentCardIndex(nextIndex);
+        }
+      }, 500);
+    };
+
+    const scheduleNext = () => {
+      if (!isMounted) return;
+      timeoutId = setTimeout(() => {
+        rotateToNext();
+        intervalId = setTimeout(scheduleNext, 3000);
+      }, 2000);
+    };
+
+    scheduleNext();
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timeoutId);
+      clearTimeout(intervalId);
+    };
   }, []);
 
   // Collapse box animation after 1 second
@@ -389,25 +463,43 @@ export function Hero() {
               </div>
 
               {/* Right Column*/}
-              <div className="w-full flex lg:w-[687px] px-6 py-6 items-center justify-center">
-                <div className="w-full h-full overflow-hidden">
+              <div className="w-full flex lg:w-[687px] px-6 py-6 items-center justify-center overflow-hidden">
+                <div className="w-full h-full relative flex items-center justify-center">
                   <div
-                    className="flex transition-transform duration-700 ease-in-out"
+                    ref={containerRef}
+                    className="flex items-center transition-transform duration-500 ease-in-out"
                     style={{
-                      transform: `translateX(-${currentCardIndex * 100}%)`,
+                      transform: `translateX(calc(50% - ${
+                        currentCardIndex * 420
+                      }px - 200px))`,
                     }}
                   >
-                    {HERO_CARDS.map((card) => (
-                      <div key={card.src} className="w-full flex-shrink-0">
-                        <Image
-                          src={card.src}
-                          alt={card.alt}
-                          width={400}
-                          height={250}
-                          className="w-full h-auto rounded"
-                        />
-                      </div>
-                    ))}
+                    {duplicatedCards.map((card, index) => {
+                      const isCenter = index === currentCardIndex;
+                      return (
+                        <div
+                          key={`${card.src}-${index}`}
+                          ref={(el) => {
+                            cardRefs.current[index] = el;
+                          }}
+                          className="flex-shrink-0"
+                          style={{
+                            width: "400px",
+                            transformOrigin: "center",
+                            marginRight: "20px",
+                            zIndex: isCenter ? 10 : 1,
+                          }}
+                        >
+                          <Image
+                            src={card.src}
+                            alt={card.alt}
+                            width={400}
+                            height={250}
+                            className="w-full h-auto rounded"
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
