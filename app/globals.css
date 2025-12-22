@@ -96,6 +96,7 @@ body {
   max-width: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  margin-bottom: 12px;
 }
 
 /* Mobile: 0px - 499px - Four lines, centered, vw scaling */
@@ -171,6 +172,14 @@ body {
   .heading-01-wrapper.collapsed .heading-01-line-2 .mobile-only {
     color: #00b684;
     font-style: italic;
+  }
+
+  .mobile-hidden {
+    display: none;
+  }
+
+  .desktop-hidden {
+    display: inline;
   }
 
   .heading-01-line-3 > span:nth-child(2) {
@@ -287,6 +296,14 @@ body {
 
 @media (min-width: 500px) {
   .heading-01-line-2 .mobile-only {
+    display: none;
+  }
+
+  .mobile-hidden {
+    display: inline;
+  }
+
+  .desktop-hidden {
     display: none;
   }
 }

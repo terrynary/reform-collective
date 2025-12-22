@@ -226,7 +226,7 @@ export function Hero() {
     };
   }, []);
 
-  // Collapse box animation after 1 second
+  // Collapse box animation after 3 seconds
   useEffect(() => {
     if (
       !boxRef.current ||
@@ -254,7 +254,7 @@ export function Hero() {
 
       const isMobile = window.innerWidth < breakpoints.mobile;
 
-      collapseTimeline = gsap.timeline({ delay: 1 });
+      collapseTimeline = gsap.timeline({ delay: 3 });
 
       collapseTimeline.call(() => {
         if ((container as any).__animation) {
@@ -416,7 +416,7 @@ export function Hero() {
                     className="inline-block"
                     style={{ verticalAlign: "middle" }}
                   >
-                    get in
+                    get<span className="mobile-hidden"> in</span>
                   </span>{" "}
                   <span
                     ref={boxRef}
@@ -458,7 +458,8 @@ export function Hero() {
                     className="inline-block"
                     style={{ verticalAlign: "middle" }}
                   >
-                    in the way.
+                    <span className="mobile-hidden">the way.</span>
+                    <span className="desktop-hidden">in the way.</span>
                   </span>
                 </span>
               </span>
